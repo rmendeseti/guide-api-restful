@@ -1,3 +1,3 @@
 # Guia de construção de uma API RESTful
 
-Projeto construido com Spring Boot, Spring Data JPA e Banco de dado H2
+Este guia serve como base para construção de uma api rest, seguindo as melhores patricas e utilizando Spring Boot, Spring Data JPA e banco de dados H2.
