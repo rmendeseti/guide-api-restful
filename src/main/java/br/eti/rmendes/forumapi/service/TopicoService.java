@@ -18,8 +18,8 @@ import br.eti.rmendes.forumapi.repository.TopicoRepository;
 @Service
 public class TopicoService {
 	
-	private TopicoRepository topicoRepository;
-	private CursoRepository cursoRepository;
+	private final TopicoRepository topicoRepository;
+	private final CursoRepository cursoRepository;
 	
 	public TopicoService(TopicoRepository topicoRepository, CursoRepository cursoRepository) {
 		this.topicoRepository = topicoRepository;

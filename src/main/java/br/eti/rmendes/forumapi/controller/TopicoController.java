@@ -7,7 +7,6 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +29,11 @@ import br.eti.rmendes.forumapi.service.TopicoService;
 @RequestMapping("/topicos")
 public class TopicoController {
 	
-	@Autowired
-	private TopicoService topicoService;
+	private final TopicoService topicoService;
+
+	public TopicoController(TopicoService topicoService) {
+		this.topicoService = topicoService;
+	}
 	
 	@GetMapping
 	public List<TopicoDTO> listarTodos(String nomeCurso) {
@@ -58,15 +60,8 @@ public class TopicoController {
 	@Transactional
 	public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid TopicoFormPut form) {
 		
-		try {
-			
-			Topico topico = topicoService.atualizar(id, form);
-			return ResponseEntity.ok(new TopicoDTO(topico));
-			
-		} catch (Exception e) {
-			
-			return ResponseEntity.badRequest().body(e);
-		}
+		Topico topico = topicoService.atualizar(id, form);
+		return ResponseEntity.ok(new TopicoDTO(topico));
 		
 	}
 	
