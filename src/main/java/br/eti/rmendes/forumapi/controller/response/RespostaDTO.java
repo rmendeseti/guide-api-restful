@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 import br.eti.rmendes.forumapi.modelo.Resposta;
 
-public class ResponseDTO {
+public class RespostaDTO {
 	
 	private Long id;
 	private String mensagem;
 	private LocalDateTime dataCriacao;
 	private String nomeAutor;
 	
-	public ResponseDTO(Resposta resposta) {
+	public RespostaDTO(Resposta resposta) {
 		
 		this.id = resposta.getId();
 		this.mensagem = resposta.getMensagem();

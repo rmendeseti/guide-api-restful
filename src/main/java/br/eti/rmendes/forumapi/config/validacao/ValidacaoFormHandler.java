@@ -40,17 +40,17 @@ public class ValidacaoFormHandler {
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	public ResponseEntity<?> handlePathIvalido(MethodArgumentTypeMismatchException exception) { 
 		
-		return responseErrorSingleMap(HttpStatus.BAD_REQUEST, exception.getMessage());
+		return responseError(HttpStatus.BAD_REQUEST, exception.getMessage());
 	}
 	
 
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public ResponseEntity<?> handleObjetoNaoEncontrado(EmptyResultDataAccessException exception) { 
 		
-		return responseErrorSingleMap(HttpStatus.NOT_FOUND, exception.getMessage());
+		return responseError(HttpStatus.NOT_FOUND, exception.getMessage());
 	}
 	
-	private ResponseEntity<?> responseErrorSingleMap(HttpStatus status, String message) {
+	private ResponseEntity<?> responseError(HttpStatus status, String message) {
 		return ResponseEntity
 				.status(status)
 				.body(Collections.singletonMap("mensagem", message));

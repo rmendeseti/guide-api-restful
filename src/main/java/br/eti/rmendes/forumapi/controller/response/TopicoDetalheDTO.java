@@ -15,7 +15,7 @@ public class TopicoDetalheDTO {
 	private LocalDateTime dataCriacao;
 	private String nomeAutor;
 	private StatusTopico status;
-	private List<ResponseDTO> respostas;
+	private List<RespostaDTO> respostas;
 	
 	public TopicoDetalheDTO(Topico topico) {
 		
@@ -27,7 +27,7 @@ public class TopicoDetalheDTO {
 		this.status = topico.getStatus();
 		
 		this.respostas = topico.getRespostas().stream()
-				.map(ResponseDTO::new)
+				.map(RespostaDTO::new)
 				.collect(Collectors.toList());
 	}
 
@@ -55,7 +55,7 @@ public class TopicoDetalheDTO {
 		return status;
 	}
 
-	public List<ResponseDTO> getRespostas() {
+	public List<RespostaDTO> getRespostas() {
 		return respostas;
 	}
 
