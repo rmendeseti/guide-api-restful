@@ -4,6 +4,7 @@ Este guia serve como base para a construção de uma api rest, seguindo as melho
 * Spring Boot
 * Spring Data JPA
 * Bean Validation
+* Pageable Response
 
 # Controller
 TopicoController

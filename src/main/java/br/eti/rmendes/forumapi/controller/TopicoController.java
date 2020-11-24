@@ -1,12 +1,13 @@
 package br.eti.rmendes.forumapi.controller;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,12 +37,12 @@ public class TopicoController {
 	}
 	
 	@GetMapping
-	public List<TopicoDTO> listarTodos(String nomeCurso) {
+	public Page<TopicoDTO> listarTodos(String nomeCurso, Pageable paginacao) {
 		
 		if(nomeCurso != null)
-			return topicoService.listarByFilter(nomeCurso);
+			return topicoService.listarByFilter(nomeCurso, paginacao);
 		
-		return topicoService.listarTodos();
+		return topicoService.listarTodos(paginacao);
 		
 	}
 	

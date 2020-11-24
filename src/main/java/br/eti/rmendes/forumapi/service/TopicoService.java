@@ -1,10 +1,10 @@
 package br.eti.rmendes.forumapi.service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.eti.rmendes.forumapi.controller.request.TopicoFormPost;
@@ -26,16 +26,12 @@ public class TopicoService {
 		this.cursoRepository = cursoRepository;
 	}
 
-	public List<TopicoDTO> listarByFilter(String nomeCurso) {
-		return topicoRepository.findByCursoNome(nomeCurso).stream()
-				.map(TopicoDTO::new)
-				.collect(Collectors.toList());
+	public Page<TopicoDTO> listarByFilter(String nomeCurso, Pageable paginacao) {
+		return topicoRepository.findByCursoNome(nomeCurso, paginacao).map(TopicoDTO::new);
 	}
 
-	public List<TopicoDTO> listarTodos() {
-		return topicoRepository.findAll().stream()
-				.map(TopicoDTO::new)
-				.collect(Collectors.toList());
+	public Page<TopicoDTO> listarTodos(Pageable paginacao) {
+		return topicoRepository.findAll(paginacao).map(TopicoDTO::new);
 
 	}
 
