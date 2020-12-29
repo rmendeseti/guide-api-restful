@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "4ca5deee-6de2-4a60-b190-9e23ff49add1",
+		"name": "Forum API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Novo topico",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "pt-BR",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"qweqweqweqweqweqweqweqe\",\r\n\t\"mensagem\": \"Msg loca 123\",\r\n\t\"nomeCurso\": \"HTML 5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/topicos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topicos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar topico pelo id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbHVub0BlbWFpbC5jb20iLCJpYXQiOjE2MDkxNzcxNzAsImV4cCI6MTYwOTI2MzU3MCwiaWQiOjEsIm5vbWUiOiJBbHVubyIsImVtYWlsIjoiYWx1bm9AZW1haWwuY29tIiwiYXV0b3JpemFjb2VzIjpbIlJPTEUiXX0.c3lnVLXe8w0jLfNvnkL8EarFeD1VTe6mrouGEESvWGiA6SM5PpHB4fowzx5Gn-RLD6LTXTJ2c9F12KyWT3Xjeg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "pt-BR",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Alteração realizada novamente\",\r\n\t\"mensagem\": \"Msg loca 123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/topicos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topicos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar topico pelo id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/topicos/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topicos",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar topicos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/topicos?page=0&size=20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topicos"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar topico por id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbHVub0BlbWFpbC5jb20iLCJpYXQiOjE2MDkxNzYyMzcsImV4cCI6MTYwOTI2MjYzNywiaWQiOjEsIm5vbWUiOiJBbHVubyIsImVtYWlsIjoiYWx1bm9AZW1haWwuY29tIiwiYXV0b3JpemFjb2VzIjpbIlJPTEUiXX0.qpsRQLiyV2hkdvS7_WVRuRigCq6atrx1ewN39bbISPd0PMUzhjbeUTE6Cr2V1UJHxkozpRkJU9BHGAgdTdGmqQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "pt-BR",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/topicos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"topicos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"aluno@email.com\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

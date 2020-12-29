@@ -6,8 +6,12 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +41,9 @@ public class TopicoController {
 	}
 	
 	@GetMapping
-	public Page<TopicoDTO> listarTodos(String nomeCurso, Pageable paginacao) {
+	@Cacheable(value = "topico")
+	public Page<TopicoDTO> listarTodos(String nomeCurso, 
+			@PageableDefault(page = 0, size = 10, direction = Direction.ASC, sort = {"id"}) Pageable paginacao) {
 		
 		if(nomeCurso != null)
 			return topicoService.listarByFilter(nomeCurso, paginacao);
@@ -48,6 +54,7 @@ public class TopicoController {
 	
 	@PostMapping
 	@Transactional
+	@CacheEvict(value = "topico", allEntries = true)
 	public ResponseEntity<TopicoDTO> novo(@RequestBody @Valid TopicoFormPost form, UriComponentsBuilder uriBuilder) {
 		
 		Topico topico = topicoService.novo(form);
@@ -59,6 +66,7 @@ public class TopicoController {
 	
 	@PutMapping("/{id}")
 	@Transactional
+	@CacheEvict(value = "topico", allEntries = true)
 	public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid TopicoFormPut form) {
 		
 		Topico topico = topicoService.atualizar(id, form);
@@ -76,6 +84,7 @@ public class TopicoController {
 	
 	@DeleteMapping("/{id}")
 	@Transactional
+	@CacheEvict(value = "topico", allEntries = true)
 	public ResponseEntity<?> deletar(@PathVariable Long id){
 		
 		topicoService.deletarById(id);
